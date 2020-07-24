@@ -32,11 +32,6 @@
                 >
                     <div class="col-6 px-0">
                         <label for="fromDate">{{ __('fields.date.from') }}</label>
-                        {{-- <input type="date" class="form-control" id="fromDate" 
-                            v-model="model.from"
-                            name="from"
-                            :class="{ 'is-invalid': errors.length }" 
-                            aria-describedby="fromDate"> --}}
 
                         <b-form-datepicker
                             name="from"

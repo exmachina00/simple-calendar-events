@@ -37,8 +37,6 @@ export default new Vue({
                     this._parseEventItems();
                     this.showSuccessToast(response.data.message);
                 }
-            }).catch((response) => {
-                // toast error message
             });
 
             this.processing = false;

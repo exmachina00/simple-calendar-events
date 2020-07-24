@@ -13,11 +13,9 @@ class EventController extends Controller
 {
     public function index()
     {
-        $data = [];
-
-        $data['rs'] = EventSchedule::with('event')->get();
-
-        return view('index')->with('data', $data);
+        return view('index')->with('data', [
+            'rs' => EventSchedule::with('event')->get(),
+        ]);
     }
 
     /**
