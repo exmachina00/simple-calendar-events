@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <div class="container-fluid pt-3">
             <div class="row justify-content-center">
                 <div class="col-md-11">

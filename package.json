@@ -26,6 +26,7 @@
         "bootswatch": "^4.5.0",
         "font-awesome": "^4.7.0",
         "moment": "^2.27.0",
+        "vee-validate": "^3.3.7",
         "vue": "^2.6.11",
         "vue-toasted": "^1.1.28"
     }

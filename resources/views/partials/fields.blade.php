@@ -1,47 +1,90 @@
-<form action="{{ route('event.store') }}" method="POST"
-    v-on:submit.prevent="store"
-    ref="eventForm">
-    @csrf
+<validation-observer v-slot="{ handleSubmit }" slim>
+    <form action="{{ route('event.store') }}" method="POST"
+        v-on:submit.prevent="handleSubmit(store)"
+        {{-- v-on:submit.prevent="store" --}}
+        ref="eventForm">
+        @csrf
+        
+        <validation-provider name="{{ __('fields.event') }}" 
+            rules="required"
+            v-slot="{ errors }"
+        >
+            <div class="form-group">
+                <label for="event">{{ __('fields.event') }}</label>
+                <input type="text" class="form-control" name="name" id="event"
+                    v-model="model.name"
+                    :class="{ 'is-invalid': errors.length }" 
+                    aria-describedby="evantName">
 
-    <div class="form-group">
-        <label for="event">{{ __('fields.event') }}</label>
-        <input type="text" class="form-control" name="name" id="event" 
-            aria-describedby="evantName">
-    </div>
+                <span v-show="errors" class="text-danger align-right">
+                    @{{ errors[0] }}
+                </span>
+            </div>
+        </validation-provider>
 
-    <div class="form-group d-flex">
+        <validation-observer v-slot="{ errors }" slim>
+            <div class="form-group d-flex mb-2">
+                
+                <validation-provider rules="required"
+                    name="fromDate" 
+                    v-slot="{ errors }"
+                    slim
+                >
+                    <div class="col-6 px-0">
+                        <label for="fromDate">{{ __('fields.date.from') }}</label>
+                        <input type="date" class="form-control" id="fromDate" 
+                            v-model="model.from"
+                            name="from"
+                            :class="{ 'is-invalid': errors.length }" 
+                            aria-describedby="fromDate">
 
-        <div class="col-6 px-0">
-            <label for="fromDate">{{ __('fields.date.from') }}</label>
-            <input type="date" class="form-control" id="fromDate" 
-                name="from"
-                aria-describedby="fromDate">
+                        <span>@{{ errors[0] }}</span>
+                    </div>
+                </validation-provider>
+
+                <validation-provider :rules="{ date_equal_or_after: '@fromDate' }" name="To" v-slot="{ errors }" slim>
+                    <div class="col-6 px-0">
+                        <label for="toDate">{{ __('fields.date.to') }}</label>
+                        <input type="date" class="form-control"
+                            id="toDate" 
+                            v-model="model.to"
+                            name="to"
+                            :class="{ 'is-invalid': errors.length }" 
+                            aria-describedby="toDate">
+                    </div>
+                </validation-provider>
+            </div>
+
+            <div class="col-12 mb-2 pt-0" v-if="errors['To']">
+                <span class="text-danger">@{{ errors['To'][0] }}</span>
+            </div>
+        </validation-observer>
+
+        <div class="form-group">
+            {{-- @todo: Find a better way for this, carbon mixin ?? --}}
+            @foreach(\Carbon\Carbon::getDays() as $ndx => $value)
+                @if ($ndx !== 0)
+                    <input type="checkbox" value="{{ $ndx }}" name="days[]"> 
+                    <span class="mr-1">{{ Str::substr($value, 0, 3) }}</span>
+                @else
+                    @push('lastDay')
+                        <input type="checkbox" value="{{ $ndx }}" name="days[]"> 
+                        <span class="mr-1">{{ Str::substr($value, 0, 3) }}</span>
+                    @endpush
+                @endif
+            @endforeach
+
+            @stack('lastDay')
         </div>
 
-        <div class="col-6 px-0">
-            <label for="fromDate">{{ __('fields.date.to') }}</label>
-            <input type="date" class="form-control"
-                id="fromDate" 
-                name="to"
-                aria-describedby="fromDate">
-        </div>
-    </div>
+        <button class="btn btn-primary" role="button" :disabled="processing">
+            <span v-show="processing">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+            </span>
 
-    <div class="form-group">
-        {{-- @todo: Move Sunday to last --}}
-        @foreach(\Carbon\Carbon::getDays() as $ndx => $value)
-            <input type="checkbox" value="{{ $ndx }}" name="days[]"> 
-            {{ Str::substr($value, 0, 3) }}
-        @endforeach
-    </div>
+            <span v-show="! processing">{{ __('actions.save') }}</span>
+        </button>
 
-    <button class="btn btn-primary" role="button" :disabled="processing">
-        <span v-show="processing">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Loading...
-        </span>
-
-        <span v-show="! processing">{{ __('actions.save') }}</span>
-    </button>
-
-</form>
+    </form>
+</validation-observer>

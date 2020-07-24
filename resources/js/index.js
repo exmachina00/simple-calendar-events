@@ -1,8 +1,9 @@
 import toast from './mixins/toast.mixin';
 import FullCalendar from './components/CalendarComponent';
+import veeValidate from './mixins/vee-validate-wrapper.mixin';
 
 export default new Vue({
-    mixins: [ toast ],
+    mixins: [ toast, veeValidate ],
     components: {
         FullCalendar
     },
@@ -10,6 +11,11 @@ export default new Vue({
         return {
             processing: false,
             events: [],
+            model: {
+                name: '',
+                from: '',
+                to: '',
+            }
         };
     },
     mounted() {
