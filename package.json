@@ -20,8 +20,13 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@fullcalendar/daygrid": "^5.1.0",
+        "@fullcalendar/vue": "^5.1.0",
         "bootstrap": "^4.5.0",
         "bootswatch": "^4.5.0",
+        "font-awesome": "^4.7.0",
+        "moment": "^2.27.0",
+        "vue": "^2.6.11",
         "vue-toasted": "^1.1.28"
     }
 }

@@ -14,16 +14,14 @@ class CreateEventSchedulesTable extends Migration
     public function up()
     {
         Schema::create('event_schedules', function (Blueprint $table) {
-            $table->foreignId('event_id')
-                ->constrained()
-                ->onDelete('cascade');
+            $table->increments('id');
+            $table->unsignedInteger('event_id');
+            $table->date('schedule');
 
-            $table->datetime('schedule');
-
-            /*$table->foreign('event_id')
+            $table->foreign('event_id')
                 ->references('id')
                 ->on('events')
-                ->onDelete('cascade');*/
+                ->onDelete('cascade');
         });
     }
 

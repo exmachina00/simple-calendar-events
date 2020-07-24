@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-
     <div id="app">
         <div class="container-fluid pt-3">
             <div class="row justify-content-center">
                 <div class="col-md-11">
                     <div class="card border-light">
                         <div class="card-header">
-                            <strong>{{ __('content.event') }}</strong>
+                            <strong>{{ __('content.calendar') }}</strong>
                         </div>
 
                         <div class="card-body">
@@ -24,8 +23,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> <!-- End of row -->
+        </div> <!-- End of container -->
     </div>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
