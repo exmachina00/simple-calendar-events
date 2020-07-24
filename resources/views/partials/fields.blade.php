@@ -1,8 +1,8 @@
 <validation-observer v-slot="{ handleSubmit }" slim>
     <form action="{{ route('event.store') }}" method="POST"
         v-on:submit.prevent="handleSubmit(store)"
-        {{-- v-on:submit.prevent="store" --}}
-        ref="eventForm">
+        ref="eventForm"
+    >
         @csrf
         
         <validation-provider name="{{ __('fields.event') }}" 
@@ -32,25 +32,37 @@
                 >
                     <div class="col-6 px-0">
                         <label for="fromDate">{{ __('fields.date.from') }}</label>
-                        <input type="date" class="form-control" id="fromDate" 
+                        {{-- <input type="date" class="form-control" id="fromDate" 
                             v-model="model.from"
                             name="from"
                             :class="{ 'is-invalid': errors.length }" 
-                            aria-describedby="fromDate">
+                            aria-describedby="fromDate"> --}}
 
-                        <span>@{{ errors[0] }}</span>
+                        <b-form-datepicker
+                            name="from"
+                            class="form-control mb-2"
+                            :class="{ 'is-invalid': errors.length }" 
+                            v-model="model.from"
+                            button-variant="primary"
+                            :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                            :state="errors.length == 0 ? null : false"
+                        />
                     </div>
                 </validation-provider>
 
                 <validation-provider :rules="{ date_equal_or_after: '@fromDate' }" name="To" v-slot="{ errors }" slim>
                     <div class="col-6 px-0">
                         <label for="toDate">{{ __('fields.date.to') }}</label>
-                        <input type="date" class="form-control"
-                            id="toDate" 
-                            v-model="model.to"
+
+                         <b-form-datepicker
                             name="to"
+                            class="form-control mb-2"
                             :class="{ 'is-invalid': errors.length }" 
-                            aria-describedby="toDate">
+                            v-model="model.to"
+                            button-variant="primary"
+                            :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                            :state="errors.length == 0 ? null : false"
+                        />
                     </div>
                 </validation-provider>
             </div>

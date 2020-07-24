@@ -2,10 +2,12 @@ import toast from './mixins/toast.mixin';
 import FullCalendar from './components/CalendarComponent';
 import veeValidate from './mixins/vee-validate-wrapper.mixin';
 
+import { BFormDatepicker, BootstrapVueIcons } from 'bootstrap-vue'
+
 export default new Vue({
     mixins: [ toast, veeValidate ],
     components: {
-        FullCalendar
+        BFormDatepicker, FullCalendar
     },
     data() {
         return {
