@@ -2,4 +2,7 @@
     json_encode($data['rs'], JSON_UNESCAPED_SLASHES);
 !!}</script>
 
-<full-calendar :events="events"/>
+{{-- calendar view --}}
+{{-- <full-calendar :events="events"></full-calendar> --}}
+
+<calendar-list :events="events"></calendar-list>

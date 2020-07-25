@@ -1,13 +1,15 @@
 import toast from './mixins/toast.mixin';
 import FullCalendar from './components/CalendarComponent';
 import veeValidate from './mixins/vee-validate-wrapper.mixin';
+import { BFormDatepicker, BootstrapVueIcons } from 'bootstrap-vue';
 
-import { BFormDatepicker, BootstrapVueIcons } from 'bootstrap-vue'
+// test calendar
+import CalendarList from './components/CalendarListComponent';
 
 export default new Vue({
     mixins: [ toast, veeValidate ],
     components: {
-        BFormDatepicker, FullCalendar
+        BFormDatepicker, FullCalendar, CalendarList
     },
     data() {
         return {
