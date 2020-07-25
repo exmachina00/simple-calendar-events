@@ -6,7 +6,7 @@
         @csrf
         
         <validation-provider name="{{ __('fields.event') }}" 
-            rules="required"
+            :rules="{required: true, max: 100}"
             v-slot="{ errors }"
         >
             <div class="form-group">
@@ -41,6 +41,7 @@
                             button-variant="primary"
                             :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                             :state="errors.length == 0 ? null : false"
+                            label-no-date-selected=""
                         />
                     </div>
                 </validation-provider>
@@ -57,6 +58,7 @@
                             button-variant="primary"
                             :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
                             :state="errors.length == 0 ? null : false"
+                            label-no-date-selected=""
                         />
                     </div>
                 </validation-provider>

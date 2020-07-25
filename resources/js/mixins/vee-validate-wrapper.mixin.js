@@ -1,6 +1,7 @@
-import { extend, ValidationObserver, ValidationProvider } from 'vee-validate';
+import { extend, ValidationObserver, ValidationProvider, localize } from 'vee-validate';
 import * as rules from 'vee-validate/dist/rules';
-import moment from 'moment';
+import en from 'vee-validate/dist/locale/en.json';
+
 
 export default {
     components: {
@@ -8,11 +9,12 @@ export default {
     },
     data: {
         defaultVeeValidateRules: [
-            'required',
+            'required', 'max',
         ]
     },
     mounted() {
         this.addDefaultRules();
+        localize({ en });
     },
     methods: {
         addDefaultRules() {
