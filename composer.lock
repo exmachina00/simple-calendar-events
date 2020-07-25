@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "698393c4a95faa7f65a34ce956b4b441",
+    "content-hash": "6558f74828bca9ebecac73d90cea4b1a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -387,42 +387,6 @@
                 "validator"
             ],
             "time": "2020-06-16T20:11:17+00:00"
-        },
-        {
-            "name": "exmachina/laravel-route-js",
-            "version": "v0.3-alpha",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/exmachina00/laravel-routes-js.git",
-                "reference": "bb918ddc15d3e27d170b6ac1ee7cdfb80738e566"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/exmachina00/laravel-routes-js/zipball/bb918ddc15d3e27d170b6ac1ee7cdfb80738e566",
-                "reference": "bb918ddc15d3e27d170b6ac1ee7cdfb80738e566",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ExMachina\\LaravelRouteJs\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jann Paolo Cana",
-                    "email": "jpaolo.garcia03@gmail.com"
-                }
-            ],
-            "description": "Convert laravel's route to json files to be use in Javascript.",
-            "time": "2020-07-17T09:37:32+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -5961,9 +5925,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "exmachina/laravel-route-js": 15
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
