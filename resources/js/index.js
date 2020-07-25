@@ -1,15 +1,13 @@
 import toast from './mixins/toast.mixin';
-import FullCalendar from './components/CalendarComponent';
 import veeValidate from './mixins/vee-validate-wrapper.mixin';
 import { BFormDatepicker, BootstrapVueIcons } from 'bootstrap-vue';
 
-// test calendar
 import CalendarList from './components/CalendarListComponent';
 
 export default new Vue({
     mixins: [ toast, veeValidate ],
     components: {
-        BFormDatepicker, FullCalendar, CalendarList
+        BFormDatepicker, CalendarList
     },
     data() {
         return {
@@ -39,9 +37,9 @@ export default new Vue({
                     this._parseEventItems();
                     this.showSuccessToast(response.data.message);
                 }
+            }).finally(() => {
+                this.processing = false;
             });
-
-            this.processing = false;
         },
         initData() {
             this.events = JSON.parse(this.$refs.events.innerHTML);

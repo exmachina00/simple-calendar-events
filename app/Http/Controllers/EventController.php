@@ -45,7 +45,7 @@ class EventController extends Controller
             if ($schedule) {
                 $schedule->event()->associate($event)->save();
             } else {
-                $event->schedules()->firstOrCreate([
+                $event->schedules()->create([
                     'schedule' => $from->toDateString(),
                 ]);
             }

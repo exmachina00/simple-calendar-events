@@ -14,10 +14,11 @@
                 </button>
             </div>
         </div>
-        <table class="table table-hover" :class="customClasses">
+        <table class="table table-striped table-hover" :class="customClasses">
             <tbody>
-                <tr v-for="(date, index) of dates" :key="index">
-                    <td>{{ date.label }}</td>
+                <tr v-for="(date, index) of dates" :key="index"
+                    :class="{ 'active': date.title != '' }">
+                    <td class="table-label">{{ date.label }}</td>
                     <td>{{ date.title }}</td>
                 </tr>
             </tbody>
@@ -49,7 +50,7 @@
         },
         mounted() {
             this.initList();
-        }, 
+        },
         watch: {
             events: function (newVal) {
                 this._mapEventToDates();
@@ -70,7 +71,6 @@
         },
         methods: {
             _mapEventToDates() {
-
                 this.dates.forEach((date, index) => {
                     let event = this.events.find(event => event.start == date.index);
 
@@ -91,7 +91,7 @@
                     this.dates.push({
                         index: index,
                         title: '',
-                        label: current.format('ddd MMM DD')                                   
+                        label: current.format('DD ddd')                                   
                     });
 
                     current = current.add(1, 'day');
@@ -106,3 +106,19 @@
         }
     };
 </script>
+
+<style scoped>
+    tr td.table-label {
+        width: 30%;
+    }
+
+    tr.active {
+        background: rgb(204, 255, 204) !important;
+        color: #202020;
+    }
+
+    tr.active:hover {
+        background: rgb(153, 255, 153) !important;
+        color: #202020;
+    }
+</style>
