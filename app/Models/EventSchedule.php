@@ -8,7 +8,7 @@ class EventSchedule extends Model
 {
     protected $table = 'event_schedules';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'event_schedule_id';
 
     protected $hidden = ['event_id'];
 
@@ -21,6 +21,6 @@ class EventSchedule extends Model
      */
     public function event()
     {
-        return $this->belongsTo(Event::class, 'event_id');
+        return $this->belongsTo(Event::class, 'event_id', 'event_id');
     }
 }

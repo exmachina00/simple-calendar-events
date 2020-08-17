@@ -4,7 +4,7 @@
 
 <script>
     import FullCalendar from '@fullcalendar/vue';
-    import dayGridPlugin from '@fullcalendar/daygrid'
+    import dayGridPlugin from '@fullcalendar/daygrid';
 
     export default {
         props: {
