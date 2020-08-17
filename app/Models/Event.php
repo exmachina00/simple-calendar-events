@@ -8,7 +8,7 @@ class Event extends Model
 {
     protected $table = 'events';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'event_id';
 
     protected $hidden = ['event_id', 'created_at', 'updated_at',];
 
@@ -19,6 +19,6 @@ class Event extends Model
      */
     public function schedules()
     {
-        return $this->hasMany(EventSchedule::class, 'event_id');
+        return $this->hasMany(EventSchedule::class, 'event_id', 'event_id');
     }
 }
